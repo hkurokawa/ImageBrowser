@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ImageBrowser</string>
+    <string name="fullscreen_image_description">Photo image</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_manage_labels">Manage Labels</string>
+    <string name="tags">Tags: </string>
+    <string name="action_add_tag">Add tags</string>
+    <string name="dialog_add_tags_title">Add tags</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_create_tag">Create a new tag</string>
+    <string name="input_tag_name">Input tag name</string>
+    <string name="title_dialog_create_tag">Create a new tag</string>
+    <string name="tag_item_all">All</string>
+    <string name="title_activity_manage_tags">Manage Tags</string>
+    <string name="title_dialog_remove_tag">Remove %s?</string>
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
+    <string name="msg_error_duplicate_tag_name">The specified tag %s already exists.  Make sure the name is unique.</string>
+    <string name="title_dialog_error">Error</string>
+
+</resources>
