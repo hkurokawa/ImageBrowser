@@ -2,18 +2,22 @@ package com.hkurokawa.imagebrowser.activity;
 
 import com.hkurokawa.imagebrowser.R;
 import com.hkurokawa.imagebrowser.data.ImageResource;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
 public class FullscreenImagePagerAdapter extends PagerAdapter {
-   private final Context appContext;
+    private static final String TAG_NAME = "FIPagerAdapter";
+    private final Context appContext;
    private final ImageResource imageResource;
    private List<String> imageUris;
 
@@ -57,10 +61,12 @@ public class FullscreenImagePagerAdapter extends PagerAdapter {
    @Override
    public Object instantiateItem(ViewGroup container, int position) {
       final String uri = this.imageUris.get(position);
-      final Bitmap bitmap = this.imageResource.getImage(uri);
+      if (Log.isLoggable(TAG_NAME, Log.INFO)) {
+          Log.i(TAG_NAME, "Loading " + uri);
+      }
       final View layout = View.inflate(this.appContext, R.layout.fullscreen_image_layout, null);
       final ImageView imgView = (ImageView) layout.findViewById(R.id.fullscreen_image_display);
-      imgView.setImageBitmap(bitmap);
+      Picasso.with(this.appContext).load(uri).into(imgView);
       container.addView(layout);
       
       layout.setTag(uri);

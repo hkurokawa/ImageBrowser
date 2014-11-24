@@ -42,14 +42,15 @@ public class LocalPhotoResource implements ImageResource, Constants {
 
    private void loadImages() {
       // List the existing photos on the device and add new photos and remove already deleted photos
-      final String[] projection = new String[] { MediaStore.Images.Media.DATA };
+      final String[] projection = new String[] { MediaStore.Images.Media._ID };
       final Uri imageUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
       final Cursor cursor = this.contentResolver.query(imageUri, projection, null, null, null);
       try {
-         final int dataIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+         final int index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media._ID);
          final List<String> latestImageUris = new ArrayList<String>();
          while (cursor.moveToNext()) {
-            final String uri = cursor.getString(dataIndex);
+            final int imageID = cursor.getInt(index);
+            final String uri = Uri.withAppendedPath(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, String.valueOf(imageID)).toString();
             latestImageUris.add(uri);
          }
 
@@ -118,11 +119,6 @@ public class LocalPhotoResource implements ImageResource, Constants {
          cursor.close();
       }
       return imageUris;
-   }
-
-   @Override
-   public Bitmap getImage(final String uri) {
-      return BitmapFactory.decodeFile(uri);
    }
 
    @Override
